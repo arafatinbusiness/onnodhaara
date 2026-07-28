@@ -26,7 +26,7 @@ export const TrustBadgesStrip: React.FC = () => {
     },
     {
       icon: Award,
-      title: 'বিএসটিআই ও ল্যাব টেস্টেড',
+      title: '১০০% প্রাকৃতিক ও বিশুদ্ধ',
       description: 'আন্তর্জাতিক মানসম্মত হাইজিন বজায় রেখে হাই ফাইবার প্রসেসিং',
       color: 'text-[#7A0016]',
       bgColor: 'bg-[#7A0016]/10',

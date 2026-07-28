@@ -185,7 +185,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md px-3 py-2 rounded-xl shadow-md border border-[#E8DEC8] flex items-center justify-between text-[11px] font-bold text-[#7A0016]">
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  বিএসটিআই ও ল্যাব টেস্টে উত্তীর্ণ
+                  ১০০% প্রাকৃতিক ও কেমিক্যালমুক্ত
                 </span>
                 <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
                   ১০০% প্রাকৃতিক

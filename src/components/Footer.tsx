@@ -167,7 +167,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onScrollToSect
           <div>
             <p>© ২০২৬ অন্নধারা (Onnodhara)। সর্বস্বত্ব সংরক্ষিত।</p>
             <p className="text-[10px] text-amber-100/40 mt-0.5">
-              ট্রেড লাইসেন্স নং: TRAD/DNCC/019482/2025 • BSTI & Lab Certified
+              ট্রেড লাইসেন্স নং: TRAD/DNCC/019482/2025
             </p>
           </div>
 
