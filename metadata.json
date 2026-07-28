@@ -1,0 +1,6 @@
+{
+  "name": "Onnodhara - Organic Health Food (অন্নধারা)",
+  "description": "Onnodhara (অন্নধারা) - 100% natural rolled oats, herbal teas, and superfood grains e-commerce store in Bangladesh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

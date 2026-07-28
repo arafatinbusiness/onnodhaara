@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'SolaimanLipi';
+  src: url('/fonts/SolaimanLipi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SolaimanLipi';
+  src: url('/fonts/SolaimanLipi.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@layer base {
+  * {
+    font-family: 'SolaimanLipi', 'Hind Siliguri', 'Noto Serif Bengali', system-ui, sans-serif;
+  }
+  
+  body {
+    background-color: #FAF6EF;
+    color: #2C221E;
+  }
+}
+
+/* Custom scrollbar for drawer and collections */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF6EF;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9C8B4;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7A0016;
+}
