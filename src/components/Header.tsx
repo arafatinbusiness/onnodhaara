@@ -269,11 +269,11 @@ export const Header: React.FC<HeaderProps> = ({
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex">
           <div className="w-4/5 max-w-sm bg-[#FFFDF7] h-full shadow-2xl flex flex-col p-6 overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-[#E8DEC8]">
-              <img src={logoImg} alt="Onnodhara" className="h-10 w-auto object-contain" />
+            <div className="flex items-center justify-end pb-4 border-b border-[#E8DEC8]">
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-2 rounded-lg text-gray-500 hover:bg-gray-100"
+                aria-label="মেনু বন্ধ করুন"
               >
                 <X className="w-5 h-5" />
               </button>
