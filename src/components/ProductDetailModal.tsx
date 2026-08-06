@@ -15,19 +15,32 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   onAddToCart,
   onDirectOrder,
 }) => {
-  if (!product) return null;
-
+  // Hooks declared unconditionally (React Rules of Hooks)
+  const previewProduct = product || {
+    sizeOptions: [],
+    price: 0,
+    originalPrice: undefined,
+    badge: '',
+    image: '',
+    title: '',
+    rating: 0,
+    reviewsCount: 0,
+    description: '',
+    nutritionFacts: undefined,
+  };
   const defaultSize: ProductSizeOption = {
     label: '১ টি',
     value: '1pc',
-    price: product.price,
-    originalPrice: product.originalPrice,
+    price: previewProduct.price,
+    originalPrice: previewProduct.originalPrice,
   };
   const [selectedSize, setSelectedSize] = useState<ProductSizeOption>(
-    product.sizeOptions && product.sizeOptions.length > 0 ? product.sizeOptions[0] : defaultSize
+    previewProduct.sizeOptions && previewProduct.sizeOptions.length > 0 ? previewProduct.sizeOptions[0] : defaultSize
   );
   const [quantity, setQuantity] = useState<number>(1);
   const [isAdded, setIsAdded] = useState(false);
+
+  if (!product) return null;
 
   const handleAddToCart = () => {
     onAddToCart(product, selectedSize, quantity);

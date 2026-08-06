@@ -31,6 +31,7 @@ interface ProductDetailPageProps {
   onSelectProduct: (product: Product) => void;
   onAddToCart: (product: Product, size: ProductSizeOption, quantity: number) => void;
   onDirectOrder: (product: Product, size: ProductSizeOption, quantity: number) => void;
+  onOpenCart: () => void;
   helplineNumber?: string;
 }
 
@@ -41,6 +42,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   onSelectProduct,
   onAddToCart,
   onDirectOrder,
+  onOpenCart,
   helplineNumber = '01330492979',
 }) => {
   const whatsappHref = `https://wa.me/${helplineNumber.replace(/^0/, '880')}?text=${encodeURIComponent('আসসালামু আলাইকুম, আমি অন্নধারা থেকে অর্ডার করতে চাই। আমি আগ্রহী: ' + product.title)}`;
@@ -809,13 +811,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
           <div className="flex items-center gap-2 flex-1 justify-end">
             <button
-              onClick={handleAddToCart}
-              className={`p-3 rounded-xl border text-xs font-bold ${
-                isAdded
-                  ? 'bg-emerald-700 text-white border-emerald-800'
-                  : 'bg-[#FAF6EF] text-[#7A0016] border-[#7A0016]'
-              }`}
-              title="কার্টে যোগ করুন"
+              onClick={onOpenCart}
+              className="p-3 rounded-xl border text-xs font-bold bg-[#FAF6EF] text-[#7A0016] border-[#7A0016]"
+              title="কার্ট ও চেকআউট খুলুন"
             >
               <ShoppingBag className="w-5 h-5" />
             </button>

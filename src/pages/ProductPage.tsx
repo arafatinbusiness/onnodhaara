@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Product, ProductSizeOption, CartItem, OrderDetails } from '../types';
 import { ProductDetailPage } from '../components/ProductDetailPage';
 import { AnnouncementBar } from '../components/AnnouncementBar';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { MobileBottomNav } from '../components/MobileBottomNav';
 import { CheckoutDrawer } from '../components/CheckoutDrawer';
 import { OrderSuccessModal } from '../components/OrderSuccessModal';
 
@@ -91,18 +89,12 @@ export default function ProductPage({
           onSelectProduct={(p) => navigate(`/product/${p.id}`)}
           onAddToCart={handleAddToCart}
           onDirectOrder={handleDirectOrder}
+          onOpenCart={() => setIsCartOpen(true)}
           helplineNumber={helplineNumber}
         />
       </main>
 
       <Footer
-        onSelectCategory={() => navigate('/')}
-        onScrollToSection={handleScrollToSection}
-      />
-
-      <MobileBottomNav
-        cartCount={cartCount}
-        onOpenCart={() => setIsCartOpen(true)}
         onSelectCategory={() => navigate('/')}
         onScrollToSection={handleScrollToSection}
       />

@@ -25,9 +25,8 @@ export const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
   onClearCart,
   onCompleteOrder,
 }) => {
-  if (!isOpen) return null;
-
-  // Form States
+  // Form States (NOTE: all hooks must be declared before any conditional return
+  // to satisfy React's Rules of Hooks — otherwise the drawer fails to mount)
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [deliveryArea, setDeliveryArea] = useState<'inside_dhaka' | 'outside_dhaka'>('inside_dhaka');
@@ -39,6 +38,9 @@ export const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
   const [couponSuccess, setCouponSuccess] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationError, setValidationError] = useState('');
+
+  // Hooks are fully declared above; safe to conditionally return now
+  if (!isOpen) return null;
 
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.selectedSize.price * item.quantity,
