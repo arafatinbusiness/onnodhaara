@@ -461,6 +461,29 @@ export default function AdminPage({
                     <div className="text-xs text-gray-700">
                       <p><strong>{ord.customerName}</strong> • {ord.customerPhone}</p>
                       <p className="text-gray-500">{ord.fullAddress}</p>
+
+                      {/* Ordered Items with quantity & price */}
+                      {(ord.items && ord.items.length > 0) ? (
+                        <div className="mt-2 pt-2 border-t border-[#E8DEC8]">
+                          <p className="font-bold text-[#7A0016] mb-1">অর্ডারকৃত পণ্য ({ord.items.length}):</p>
+                          <div className="space-y-1">
+                            {ord.items.map((item, idx) => (
+                              <div key={idx} className="flex items-center justify-between gap-2">
+                                <div className="flex items-center gap-2 min-w-0">
+                                  <span className="truncate">{item.product?.title || 'পণ্য'}</span>
+                                  {item.selectedSize?.label && (
+                                    <span className="text-[10px] text-gray-500 shrink-0">({item.selectedSize.label})</span>
+                                  )}
+                                  <span className="text-[10px] bg-[#7A0016]/10 text-[#7A0016] px-1.5 py-0.5 rounded font-bold shrink-0">× {item.quantity}</span>
+                                </div>
+                                <span className="font-mono font-bold shrink-0">৳{item.selectedSize?.price ? item.selectedSize.price * item.quantity : 0}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <p className="text-[10px] text-gray-400 mt-1">পণ্যের তথ্য পাওয়া যায়নি</p>
+                      )}
                     </div>
                   </div>
                 ))}
