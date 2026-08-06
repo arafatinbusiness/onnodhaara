@@ -1,6 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Home, Grid, ShoppingBag, PhoneCall, Lock } from 'lucide-react';
+import { Home, Grid, ShoppingBag, PhoneCall } from 'lucide-react';
 import { ProductCategory } from '../types';
 
 interface MobileBottomNavProps {
@@ -16,7 +15,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onSelectCategory,
   onScrollToSection,
 }) => {
-  const navigate = useNavigate();
   const whatsappHref = `https://wa.me/8801330492979?text=${encodeURIComponent('আসসালামু আলাইকুম, আমি অন্নধারা থেকে অর্ডার করতে চাই।')}`;
   return (
     <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FFFDF7]/95 backdrop-blur-md border-t border-[#E8DEC8] px-4 py-2 shadow-lg">
@@ -61,15 +59,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           </div>
           <span>কার্ট</span>
         </button>
-
-        {/* Admin Shortcut */}
-          <button
-            onClick={() => navigate('/admin')}
-            className="flex flex-col items-center gap-1 text-[#7A0016] hover:text-[#5A0010] text-[10px] font-bold cursor-pointer"
-          >
-            <Lock className="w-5 h-5 text-[#7A0016]" />
-            <span>এডমিন</span>
-          </button>
 
         {/* Quick Order Phone Hotline */}
         <a

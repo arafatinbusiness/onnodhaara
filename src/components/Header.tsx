@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Search, ShoppingBag, Menu, X, Phone, Heart, CheckCircle, ChevronRight, Lock, MessageCircle } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, Phone, Heart, CheckCircle, ChevronRight, MessageCircle } from 'lucide-react';
 import { Product, ProductCategory } from '../types';
 import logoImg from '../assets/images/onnodhara_logo.png';
 
@@ -26,7 +25,6 @@ export const Header: React.FC<HeaderProps> = ({
   helplineNumber = '01330492979',
 }) => {
   const whatsappHref = `https://wa.me/${helplineNumber.replace(/^0/, '880')}?text=${encodeURIComponent('আসসালামু আলাইকুম, আমি অন্নধারা থেকে অর্ডার করতে চাই।')}`;
-  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -173,16 +171,6 @@ export const Header: React.FC<HeaderProps> = ({
               <Phone className="w-3.5 h-3.5" />
               <span>কল: {helplineNumber}</span>
             </a>
-
-            {/* Desktop: Admin */}
-            <button
-              onClick={() => navigate('/admin')}
-              className="hidden sm:inline-flex px-3 py-2.5 rounded-2xl bg-amber-100 text-[#7A0016] hover:bg-amber-200 border border-amber-300 font-bold text-xs items-center gap-1.5 transition-all shadow-2xs cursor-pointer"
-              title="এডমিন প্যানেলে লগইন করুন"
-            >
-              <Lock className="w-3.5 h-3.5" />
-              <span>এডমিন</span>
-            </button>
 
             {/* Mobile: Search icon */}
             <button

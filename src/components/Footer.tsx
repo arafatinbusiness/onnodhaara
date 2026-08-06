@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Phone, Mail, MapPin, ShieldCheck, Heart, Facebook, Instagram, Youtube } from 'lucide-react';
 import { ProductCategory } from '../types';
 
@@ -9,7 +8,6 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onScrollToSection }) => {
-  const navigate = useNavigate();
   return (
     <footer className="bg-[#2C221E] text-amber-50/90 pt-16 pb-24 lg:pb-12 border-t-4 border-[#7A0016]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -128,14 +126,6 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onScrollToSect
                   প্রাইভেসী পলিসি ও টার্মস
                 </span>
               </li>
-                <li className="pt-1">
-                  <button
-                    onClick={() => navigate('/admin')}
-                    className="text-amber-300 hover:underline font-bold flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>🔒 এডমিন প্যানেল (Admin Panel)</span>
-                  </button>
-                </li>
             </ul>
           </div>
 
