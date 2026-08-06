@@ -122,10 +122,7 @@ export default function AdminPage({
   const [quickBenefits, setQuickBenefits] = useState('হাই ফাইবার, ১০০% প্রাকৃতিক, জিরো কেমিক্যাল');
   const [description, setDescription] = useState('');
 
-  const [sizeOptions, setSizeOptions] = useState<ProductSizeOption[]>([
-    { label: '৫০০ গ্রাম প্যাক', value: '500g', price: 450, originalPrice: 550 },
-    { label: '১ কেজি ফ্যামিলি প্যাক', value: '1kg', price: 850, originalPrice: 990 },
-  ]);
+  const [sizeOptions, setSizeOptions] = useState<ProductSizeOption[]>([]);
 
   const [productSearch, setProductSearch] = useState('');
   const [newCouponCode, setNewCouponCode] = useState('');
@@ -197,9 +194,7 @@ export default function AdminPage({
     setImage(product.image);
     setQuickBenefits(product.quickBenefits.join(', '));
     setDescription(product.description || '');
-    setSizeOptions(product.sizeOptions && product.sizeOptions.length > 0 ? product.sizeOptions : [
-      { label: '৫০০ গ্রাম', value: '500g', price: product.price }
-    ]);
+    setSizeOptions(product.sizeOptions || []);
     setActiveSection('products');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -218,10 +213,7 @@ export default function AdminPage({
     setImage('https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&w=800&q=80');
     setQuickBenefits('হাই ফাইবার, ১০০% প্রাকৃতিক, জিরো কেমিক্যাল');
     setDescription('');
-    setSizeOptions([
-      { label: '৫০০ গ্রাম প্যাক', value: '500g', price: 450, originalPrice: 550 },
-      { label: '১ কেজি ফ্যামিলি প্যাক', value: '1kg', price: 850, originalPrice: 990 },
-    ]);
+    setSizeOptions([]);
   };
 
   const handleImageFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -240,7 +232,7 @@ export default function AdminPage({
   const handleAddSizeOption = () => {
     setSizeOptions([
       ...sizeOptions,
-      { label: 'নতুন সাইজ', value: `size_${Date.now()}`, price: price, originalPrice: originalPrice }
+      { label: 'নতুন ভেরিয়েশন', value: `variant_${Date.now()}`, price: Number(price), originalPrice: originalPrice ? Number(originalPrice) : undefined }
     ]);
   };
 
@@ -251,7 +243,6 @@ export default function AdminPage({
   };
 
   const handleRemoveSizeOption = (index: number) => {
-    if (sizeOptions.length <= 1) return;
     setSizeOptions(sizeOptions.filter((_, i) => i !== index));
   };
 

@@ -30,7 +30,9 @@ export const BestSellersGrid: React.FC<BestSellersGridProps> = ({
       : products.filter((p) => p.category === selectedCategory);
 
   const getProductSize = (product: Product): ProductSizeOption => {
-    return selectedSizes[product.id] || product.sizeOptions[0];
+    if (selectedSizes[product.id]) return selectedSizes[product.id];
+    if (product.sizeOptions && product.sizeOptions.length > 0) return product.sizeOptions[0];
+    return { label: '১ টি', value: '1pc', price: product.price, originalPrice: product.originalPrice };
   };
 
   const handleSizeChange = (productId: string, sizeOption: ProductSizeOption) => {
@@ -207,7 +209,7 @@ export const BestSellersGrid: React.FC<BestSellersGridProps> = ({
                   </div>
 
                   {/* Size Options Selector */}
-                  {product.sizeOptions.length > 1 && (
+                  {product.sizeOptions && product.sizeOptions.length > 1 && (
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">
                         প্যাক সাইজ সিলেক্ট করুন:

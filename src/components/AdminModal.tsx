@@ -103,10 +103,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   const [description, setDescription] = useState('');
   
   // Size options list state
-  const [sizeOptions, setSizeOptions] = useState<ProductSizeOption[]>([
-    { label: '৫০০ গ্রাম প্যাক', value: '500g', price: 450, originalPrice: 550 },
-    { label: '১ কেজি ফ্যামিলি প্যাক', value: '1kg', price: 850, originalPrice: 990 },
-  ]);
+  const [sizeOptions, setSizeOptions] = useState<ProductSizeOption[]>([]);
 
   // Coupon Form State
   const [newCouponCode, setNewCouponCode] = useState('');
@@ -167,9 +164,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
     setImage(product.image);
     setQuickBenefits(product.quickBenefits.join(', '));
     setDescription(product.description || '');
-    setSizeOptions(product.sizeOptions && product.sizeOptions.length > 0 ? product.sizeOptions : [
-      { label: '৫০০ গ্রাম', value: '500g', price: product.price }
-    ]);
+    setSizeOptions(product.sizeOptions || []);
     // Scroll to form top smoothly
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -188,10 +183,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
     setImage('https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&w=800&q=80');
     setQuickBenefits('হাই ফাইবার, ১০০% প্রাকৃতিক, জিরো কেমিক্যাল');
     setDescription('');
-    setSizeOptions([
-      { label: '৫০০ গ্রাম প্যাক', value: '500g', price: 450, originalPrice: 550 },
-      { label: '১ কেজি ফ্যামিলি প্যাক', value: '1kg', price: 850, originalPrice: 990 },
-    ]);
+    setSizeOptions([]);
   };
 
   // Image File Upload handler
@@ -212,7 +204,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   const handleAddSizeOption = () => {
     setSizeOptions([
       ...sizeOptions,
-      { label: 'নতুন সাইজ', value: `size_${Date.now()}`, price: price, originalPrice: originalPrice }
+      { label: 'নতুন ভেরিয়েশন', value: `variant_${Date.now()}`, price: Number(price), originalPrice: originalPrice ? Number(originalPrice) : undefined }
     ]);
   };
 
@@ -223,7 +215,6 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   };
 
   const handleRemoveSizeOption = (index: number) => {
-    if (sizeOptions.length <= 1) return;
     setSizeOptions(sizeOptions.filter((_, i) => i !== index));
   };
 
@@ -671,11 +662,16 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                         </div>
 
                         <div className="space-y-2">
+                          {sizeOptions.length === 0 && (
+                            <p className="text-xs text-gray-500 bg-white p-3 rounded-lg border border-dashed border-[#D9C8B4]">
+                              কোনো সাইজ/ভেরিয়েশন যোগ করা হয়নি। আপনি চাইলে উপরের বাটনের মাধ্যমে ভেরিয়েশন (যেমন: ৫০০ গ্রাম, ১ কেজি বোতল ইত্যাদি) যোগ করতে পারবেন।
+                            </p>
+                          )}
                           {sizeOptions.map((opt, idx) => (
                             <div key={idx} className="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-[#D9C8B4]">
                               <input
                                 type="text"
-                                placeholder="লেবেল (যেমন: ৫০০ গ্রাম প্যাক)"
+                                placeholder="লেবেল (যেমন: ৫০০ গ্রাম প্যাক বা ১ কেজি বোতল)"
                                 value={opt.label}
                                 onChange={(e) => handleUpdateSizeOption(idx, 'label', e.target.value)}
                                 className="flex-1 px-2.5 py-1 text-xs rounded-lg border border-gray-300"
@@ -694,15 +690,13 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                                 onChange={(e) => handleUpdateSizeOption(idx, 'price', e.target.value)}
                                 className="w-24 px-2.5 py-1 text-xs font-mono rounded-lg border border-gray-300"
                               />
-                              {sizeOptions.length > 1 && (
-                                <button
-                                  type="button"
-                                  onClick={() => handleRemoveSizeOption(idx)}
-                                  className="text-red-500 p-1 hover:bg-red-50 rounded-lg"
-                                >
-                                  <Trash2 className="w-4 h-4" />
-                                </button>
-                              )}
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveSizeOption(idx)}
+                                className="text-red-500 p-1 hover:bg-red-50 rounded-lg"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
                             </div>
                           ))}
                         </div>

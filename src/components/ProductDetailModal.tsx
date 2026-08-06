@@ -17,7 +17,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 }) => {
   if (!product) return null;
 
-  const [selectedSize, setSelectedSize] = useState<ProductSizeOption>(product.sizeOptions[0]);
+  const defaultSize: ProductSizeOption = {
+    label: '১ টি',
+    value: '1pc',
+    price: product.price,
+    originalPrice: product.originalPrice,
+  };
+  const [selectedSize, setSelectedSize] = useState<ProductSizeOption>(
+    product.sizeOptions && product.sizeOptions.length > 0 ? product.sizeOptions[0] : defaultSize
+  );
   const [quantity, setQuantity] = useState<number>(1);
   const [isAdded, setIsAdded] = useState(false);
 
@@ -107,7 +115,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </div>
 
               {/* Size Selector */}
-              {product.sizeOptions.length > 0 && (
+              {product.sizeOptions && product.sizeOptions.length > 0 && (
                 <div className="space-y-1.5 my-4">
                   <label className="text-xs font-bold text-[#2C221E] font-serif-bn">
                     প্যাক সাইজ বেছে নিন:

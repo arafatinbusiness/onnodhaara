@@ -310,80 +310,106 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </div>
               )}
 
-              {/* Quantity & Volume Tier Upsell Selector */}
-              <div className="space-y-2 pt-2">
-                <div className="flex items-center justify-between">
-                  <label className="block text-xs font-bold text-[#2C221E] font-serif-bn">
-                    অর্ডার ভলিউম ডিল (বেশি কিনলে বেশি সাশ্রয়):
-                  </label>
-                  <span className="text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">
-                    🔥 সুপার সেভার প্যাক
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-3 gap-2">
-                  {/* Tier 1: 1 Pack */}
-                  <button
-                    type="button"
-                    onClick={() => setQuantity(1)}
-                    className={`p-2.5 rounded-2xl border text-center transition-all cursor-pointer ${
-                      quantity === 1
-                        ? 'bg-[#7A0016] text-amber-50 border-[#7A0016] shadow-sm'
-                        : 'bg-white text-[#2C221E] border-[#D9C8B4] hover:border-[#7A0016]'
-                    }`}
-                  >
-                    <p className="text-[11px] font-bold">১ টি প্যাক</p>
-                    <p className="text-xs font-mono font-extrabold mt-0.5">৳{selectedSize.price}</p>
-                    <p className={`text-[9px] mt-0.5 ${quantity === 1 ? 'text-amber-200' : 'text-gray-400'}`}>
-                      নিয়মিত মূল্য
-                    </p>
-                  </button>
-
-                  {/* Tier 2: 2 Packs (Save Extra) */}
-                  <button
-                    type="button"
-                    onClick={() => setQuantity(2)}
-                    className={`p-2.5 rounded-2xl border text-center transition-all cursor-pointer relative overflow-hidden ${
-                      quantity === 2
-                        ? 'bg-[#7A0016] text-amber-50 border-[#7A0016] shadow-sm ring-2 ring-[#7A0016]/30'
-                        : 'bg-amber-50/50 text-[#2C221E] border-amber-300 hover:border-[#7A0016]'
-                    }`}
-                  >
-                    <span className="absolute top-0 right-0 bg-amber-500 text-white font-black text-[8px] px-1.5 py-0.2 rounded-bl">
-                      ১০% ছাড়
+              {/* Quantity & Volume Tier Upsell Selector - only shown when product has size variations */}
+              {product.sizeOptions && product.sizeOptions.length > 0 ? (
+                <div className="space-y-2 pt-2">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-bold text-[#2C221E] font-serif-bn">
+                      অর্ডার ভলিউম ডিল (বেশি কিনলে বেশি সাশ্রয়):
+                    </label>
+                    <span className="text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">
+                      🔥 সুপার সেভার প্যাক
                     </span>
-                    <p className="text-[11px] font-bold">২ টি প্যাক</p>
-                    <p className="text-xs font-mono font-extrabold mt-0.5">
-                      ৳{Math.round(selectedSize.price * 2 * 0.9)}
-                    </p>
-                    <p className={`text-[9px] font-bold mt-0.5 ${quantity === 2 ? 'text-amber-200' : 'text-amber-800'}`}>
-                      সাশ্রয় ৳{Math.round(selectedSize.price * 2 * 0.1)}
-                    </p>
-                  </button>
+                  </div>
 
-                  {/* Tier 3: 3 Packs (Family Combo + Free Shipping) */}
-                  <button
-                    type="button"
-                    onClick={() => setQuantity(3)}
-                    className={`p-2.5 rounded-2xl border text-center transition-all cursor-pointer relative overflow-hidden ${
-                      quantity === 3
-                        ? 'bg-[#7A0016] text-amber-50 border-[#7A0016] shadow-sm ring-2 ring-[#7A0016]/30'
-                        : 'bg-emerald-50/50 text-[#2C221E] border-emerald-300 hover:border-[#7A0016]'
-                    }`}
-                  >
-                    <span className="absolute top-0 right-0 bg-emerald-700 text-white font-black text-[8px] px-1.5 py-0.2 rounded-bl">
-                      ১৫% ছাড় + ফ্রি শিপিং
-                    </span>
-                    <p className="text-[11px] font-bold">৩ টি প্যাক (ফ্যামিলি)</p>
-                    <p className="text-xs font-mono font-extrabold mt-0.5">
-                      ৳{Math.round(selectedSize.price * 3 * 0.85)}
-                    </p>
-                    <p className={`text-[9px] font-bold mt-0.5 ${quantity === 3 ? 'text-amber-200' : 'text-emerald-800'}`}>
-                      সাশ্রয় ৳{Math.round(selectedSize.price * 3 * 0.15)}
-                    </p>
-                  </button>
+                  <div className="grid grid-cols-3 gap-2">
+                    {/* Tier 1: 1 Pack */}
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(1)}
+                      className={`p-2.5 rounded-2xl border text-center transition-all cursor-pointer ${
+                        quantity === 1
+                          ? 'bg-[#7A0016] text-amber-50 border-[#7A0016] shadow-sm'
+                          : 'bg-white text-[#2C221E] border-[#D9C8B4] hover:border-[#7A0016]'
+                      }`}
+                    >
+                      <p className="text-[11px] font-bold">১ টি প্যাক</p>
+                      <p className="text-xs font-mono font-extrabold mt-0.5">৳{selectedSize.price}</p>
+                      <p className={`text-[9px] mt-0.5 ${quantity === 1 ? 'text-amber-200' : 'text-gray-400'}`}>
+                        নিয়মিত মূল্য
+                      </p>
+                    </button>
+
+                    {/* Tier 2: 2 Packs (Save Extra) */}
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(2)}
+                      className={`p-2.5 rounded-2xl border text-center transition-all cursor-pointer relative overflow-hidden ${
+                        quantity === 2
+                          ? 'bg-[#7A0016] text-amber-50 border-[#7A0016] shadow-sm ring-2 ring-[#7A0016]/30'
+                          : 'bg-amber-50/50 text-[#2C221E] border-amber-300 hover:border-[#7A0016]'
+                      }`}
+                    >
+                      <span className="absolute top-0 right-0 bg-amber-500 text-white font-black text-[8px] px-1.5 py-0.2 rounded-bl">
+                        ১০% ছাড়
+                      </span>
+                      <p className="text-[11px] font-bold">২ টি প্যাক</p>
+                      <p className="text-xs font-mono font-extrabold mt-0.5">
+                        ৳{Math.round(selectedSize.price * 2 * 0.9)}
+                      </p>
+                      <p className={`text-[9px] font-bold mt-0.5 ${quantity === 2 ? 'text-amber-200' : 'text-amber-800'}`}>
+                        সাশ্রয় ৳{Math.round(selectedSize.price * 2 * 0.1)}
+                      </p>
+                    </button>
+
+                    {/* Tier 3: 3 Packs (Family Combo + Free Shipping) */}
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(3)}
+                      className={`p-2.5 rounded-2xl border text-center transition-all cursor-pointer relative overflow-hidden ${
+                        quantity === 3
+                          ? 'bg-[#7A0016] text-amber-50 border-[#7A0016] shadow-sm ring-2 ring-[#7A0016]/30'
+                          : 'bg-emerald-50/50 text-[#2C221E] border-emerald-300 hover:border-[#7A0016]'
+                      }`}
+                    >
+                      <span className="absolute top-0 right-0 bg-emerald-700 text-white font-black text-[8px] px-1.5 py-0.2 rounded-bl">
+                        ১৫% ছাড় + ফ্রি শিপিং
+                      </span>
+                      <p className="text-[11px] font-bold">৩ টি প্যাক (ফ্যামিলি)</p>
+                      <p className="text-xs font-mono font-extrabold mt-0.5">
+                        ৳{Math.round(selectedSize.price * 3 * 0.85)}
+                      </p>
+                      <p className={`text-[9px] font-bold mt-0.5 ${quantity === 3 ? 'text-amber-200' : 'text-emerald-800'}`}>
+                        সাশ্রয় ৳{Math.round(selectedSize.price * 3 * 0.15)}
+                      </p>
+                    </button>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                /* Simple quantity stepper for products without size variations */
+                <div className="flex items-center gap-4 pt-2">
+                  <span className="text-xs font-bold text-[#2C221E] font-serif-bn">পরিমাণ:</span>
+                  <div className="flex items-center rounded-xl bg-white border border-[#D9C8B4] overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="px-3 py-1.5 font-bold text-gray-700 hover:bg-[#FAF6EF] cursor-pointer"
+                    >
+                      −
+                    </button>
+                    <span className="px-4 py-1.5 font-bold text-sm font-mono text-[#7A0016]">
+                      {quantity}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="px-3 py-1.5 font-bold text-gray-700 hover:bg-[#FAF6EF] cursor-pointer"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {/* Benefits Checklist */}
               <div className="grid grid-cols-2 gap-2 pt-2">

@@ -323,14 +323,17 @@ export function ProductsSection({
                   <label className="text-xs font-bold text-[#7A0016]">Size Options</label>
                   <button type="button" onClick={handleAddSizeOption} className="px-2 py-1 bg-[#7A0016] text-white rounded-lg text-xs cursor-pointer">+ Add Size</button>
                 </div>
+                {sizeOptions.length === 0 && (
+                  <p className="text-xs text-gray-500 bg-white p-3 rounded-lg border border-dashed border-[#D9C8B4]">
+                    কোনো ভেরিয়েশন যোগ করা হয়নি। আপনি চাইলে উপরের "+ Add Size" বাটনে ক্লিক করে ভেরিয়েশন (যেমন: ৫০০ গ্রাম, বোতল ইত্যাদি) যোগ করতে পারবেন।
+                  </p>
+                )}
                 {sizeOptions.map((opt, idx) => (
                   <div key={idx} className="flex gap-2 items-center bg-white p-2 rounded-lg border border-[#D9C8B4]">
                     <input type="text" placeholder="Label" value={opt.label} onChange={(e) => handleUpdateSizeOption(idx, 'label', e.target.value)} className="flex-1 px-2 py-1 text-xs rounded border" />
                     <input type="text" placeholder="Code" value={opt.value} onChange={(e) => handleUpdateSizeOption(idx, 'value', e.target.value)} className="w-20 px-2 py-1 text-xs rounded border" />
                     <input type="number" placeholder="Price" value={opt.price} onChange={(e) => handleUpdateSizeOption(idx, 'price', e.target.value)} className="w-20 px-2 py-1 text-xs rounded border" />
-                    {sizeOptions.length > 1 && (
-                      <button type="button" onClick={() => handleRemoveSizeOption(idx)} className="text-red-500 cursor-pointer"><Trash2 className="w-3.5 h-3.5" /></button>
-                    )}
+                    <button type="button" onClick={() => handleRemoveSizeOption(idx)} className="text-red-500 cursor-pointer"><Trash2 className="w-3.5 h-3.5" /></button>
                   </div>
                 ))}
               </div>

@@ -11,6 +11,7 @@ const docToProduct = (doc: any): Product => {
   return {
     id: doc.id,
     ...data,
+    sizeOptions: data.sizeOptions || [],
   } as Product;
 };
 

@@ -14,7 +14,14 @@ export default function App() {
   const [products, setProducts] = useState<Product[]>(() => {
     try {
       const saved = localStorage.getItem('onnodhara_products');
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Normalize old cached products that may lack sizeOptions
+        return parsed.map((p: any) => ({
+          ...p,
+          sizeOptions: p.sizeOptions || [],
+        }));
+      }
     } catch (e) {
       console.error('Failed loading products from localStorage', e);
     }
@@ -218,7 +225,9 @@ export default function App() {
       items: [
         {
           product: p,
-          selectedSize: p.sizeOptions[0] || { label: '৫০0g', value: '500g', price: p.price },
+          selectedSize: (p.sizeOptions && p.sizeOptions.length > 0)
+            ? p.sizeOptions[0]
+            : { label: '১ টি', value: '1pc', price: p.price },
           quantity: 2,
         },
       ],
