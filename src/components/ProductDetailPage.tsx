@@ -424,10 +424,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   <Truck className="w-4 h-4 text-[#7A0016] mx-auto mb-1" />
                   <span>৪৮ ঘণ্টার মধ্যে শিপিং</span>
                 </div>
-                <div className="p-2 rounded-xl bg-[#FAF6EF] border border-[#E8DEC8]">
-                  <RotateCcw className="w-4 h-4 text-[#7A0016] mx-auto mb-1" />
-                  <span>৭ দিনের গ্যারান্টি</span>
-                </div>
+            
                 <div className="p-2 rounded-xl bg-[#FAF6EF] border border-[#E8DEC8]">
                   <Award className="w-4 h-4 text-[#7A0016] mx-auto mb-1" />
                   <span>১০০% খাঁটি ও বিশুদ্ধ</span>

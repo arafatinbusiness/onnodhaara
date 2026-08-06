@@ -87,7 +87,7 @@ export const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
     // BD Phone validation regex (11 digits starting with 01)
     const phoneRegex = /^01[3-9]\d{8}$/;
     if (!phoneRegex.test(phone.trim())) {
-      setValidationError('অনুগ্রহ করে সঠিক ১১ ডিজিটের মোবাইল নম্বর লিখুন (যেমন: 01700000000)');
+      setValidationError('অনুগ্রহ করে সঠিক ১১ ডিজিটের মোবাইল নম্বর লিখুন (যেমন: 01XXXXXXXXX)');
       return;
     }
 
@@ -342,7 +342,7 @@ export const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
                 <input
                   type="tel"
                   required
-                  placeholder="01700000000"
+                  placeholder="01XXXXXXXXX"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-white text-xs font-mono rounded-xl border border-[#D9C8B4] focus:outline-hidden focus:border-[#7A0016]"
