@@ -9,6 +9,8 @@ import { BestSellersGrid } from '../components/BestSellersGrid';
 import { BrandStorySection } from '../components/BrandStorySection';
 import { TestimonialsSection } from '../components/TestimonialsSection';
 import { MobileBottomNav } from '../components/MobileBottomNav';
+import { CheckoutDrawer } from '../components/CheckoutDrawer';
+import { OrderSuccessModal } from '../components/OrderSuccessModal';
 import { Footer } from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 
@@ -150,6 +152,23 @@ export default function HomePage({
           handleScrollToSection('bestsellers');
         }}
         onScrollToSection={handleScrollToSection}
+      />
+
+      <CheckoutDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cartItems={cartItems}
+        allProducts={products}
+        onAddToCart={(p, size) => handleAddToCart(p, size, 1)}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveItem}
+        onClearCart={handleClearCart}
+        onCompleteOrder={handleCompleteOrder}
+      />
+
+      <OrderSuccessModal
+        orderDetails={completedOrder}
+        onClose={() => setCompletedOrder(null)}
       />
     </div>
   );
