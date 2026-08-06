@@ -17,6 +17,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onScrollToSection,
 }) => {
   const navigate = useNavigate();
+  const whatsappHref = `https://wa.me/8801330492979?text=${encodeURIComponent('আসসালামু আলাইকুম, আমি অন্নধারা থেকে অর্ডার করতে চাই।')}`;
   return (
     <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FFFDF7]/95 backdrop-blur-md border-t border-[#E8DEC8] px-4 py-2 shadow-lg">
       <div className="flex items-center justify-between max-w-md mx-auto">
@@ -72,11 +73,20 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
         {/* Quick Order Phone Hotline */}
         <a
-          href="tel:+8801700000000"
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-extrabold flex items-center gap-1.5 shadow-md active:scale-95 transition-transform"
+        >
+          <PhoneCall className="w-3.5 h-3.5 text-emerald-300" />
+          <span>WhatsApp</span>
+        </a>
+        <a
+          href="tel:+8801330492979"
           className="px-3.5 py-2 bg-gradient-to-r from-[#7A0016] to-[#5A0010] text-amber-50 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shadow-md active:scale-95 transition-transform"
         >
           <PhoneCall className="w-3.5 h-3.5 text-amber-300" />
-          <span>কল করুন</span>
+          <span>কল</span>
         </a>
 
       </div>

@@ -45,7 +45,7 @@ export default function App() {
   });
 
   const [helplineNumber, setHelplineNumber] = useState(() => {
-    return localStorage.getItem('onnodhara_helpline') || '০১৭০০-০০০০০০';
+    return localStorage.getItem('onnodhara_helpline') || '01330492979';
   });
 
   // Coupons state

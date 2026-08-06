@@ -1,6 +1,6 @@
 import React from 'react';
 import { OrderDetails } from '../types';
-import { CheckCircle2, Truck, PhoneCall, ShoppingBag, Sparkles, X } from 'lucide-react';
+import { CheckCircle2, Truck, PhoneCall, MessageCircle, ShoppingBag, Sparkles, X } from 'lucide-react';
 
 interface OrderSuccessModalProps {
   orderDetails: OrderDetails | null;
@@ -89,11 +89,20 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({ orderDetai
         {/* Action Buttons */}
         <div className="space-y-2">
           <a
-            href="tel:+8801700000000"
+            href={`https://wa.me/8801330492979?text=${encodeURIComponent(`আসসালামু আলাইকুম, আমার অর্ডার আপডেট জানতে চাই। অর্ডার আইডি: ${orderDetails.orderId}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white border border-emerald-700 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors"
+          >
+            <MessageCircle className="w-4 h-4" />
+            <span>WhatsApp এ অর্ডার ট্র্যাক করুন</span>
+          </a>
+          <a
+            href="tel:+8801330492979"
             className="w-full py-3 px-4 bg-[#FAF6EF] text-[#7A0016] border border-[#7A0016] rounded-xl font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#7A0016] hover:text-white transition-colors"
           >
             <PhoneCall className="w-4 h-4" />
-            <span>অর্ডার ট্র্যাকিং হটলাইন: ০১৭০০-০০০০০০</span>
+            <span>অর্ডার ট্র্যাকিং হটলাইন: 01330492979</span>
           </a>
 
           <button

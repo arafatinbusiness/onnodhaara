@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, ShoppingBag, Menu, X, Phone, Heart, CheckCircle, ChevronRight, Lock } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, Phone, Heart, CheckCircle, ChevronRight, Lock, MessageCircle } from 'lucide-react';
 import { Product, ProductCategory } from '../types';
 import logoImg from '../assets/images/onnodhara_logo.png';
 
@@ -23,8 +23,9 @@ export const Header: React.FC<HeaderProps> = ({
   onSelectCategory,
   onSelectProduct,
   onScrollToSection,
-  helplineNumber = '০১৭০০-০০০০০০',
+  helplineNumber = '01330492979',
 }) => {
+  const whatsappHref = `https://wa.me/${helplineNumber.replace(/^0/, '880')}?text=${encodeURIComponent('আসসালামু আলাইকুম, আমি অন্নধারা থেকে অর্ডার করতে চাই।')}`;
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -152,13 +153,25 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Right Actions */}
           <div className="flex items-center gap-1.5 sm:gap-2.5">
+            {/* Desktop: WhatsApp Order */}
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 border border-emerald-700 shadow-sm transition-colors"
+              title="WhatsApp এ মেসেজ করে অর্ডার করুন"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>WhatsApp অর্ডার</span>
+            </a>
+
             {/* Desktop: Hotline */}
             <a
               href={`tel:${helplineNumber}`}
               className="hidden lg:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-2xl text-xs font-semibold text-[#7A0016] bg-[#7A0016]/10 hover:bg-[#7A0016]/15 border border-[#7A0016]/20 transition-colors"
             >
               <Phone className="w-3.5 h-3.5" />
-              <span>কল করে অর্ডার: {helplineNumber}</span>
+              <span>কল: {helplineNumber}</span>
             </a>
 
             {/* Desktop: Admin */}
@@ -327,11 +340,20 @@ export const Header: React.FC<HeaderProps> = ({
 
             <div className="mt-auto pt-6 border-t border-[#E8DEC8]">
               <a
-                href="tel:+8801700000000"
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold bg-[#7A0016] text-white shadow-sm"
+                href={`tel:${helplineNumber}`}
+                className="w-full mb-2 flex items-center justify-center gap-2 py-3 rounded-xl font-bold bg-[#7A0016] text-white shadow-sm"
               >
                 <Phone className="w-4 h-4" />
-                <span>সরাসরি কল করে অর্ডার</span>
+                <span>সরাসরি কল করে অর্ডার: {helplineNumber}</span>
+              </a>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>WhatsApp এ অর্ডার করুন</span>
               </a>
               <div className="mt-3 text-center text-xs text-[#3E6B48] flex items-center justify-center gap-1">
                 <CheckCircle className="w-3.5 h-3.5" />

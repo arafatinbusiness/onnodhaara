@@ -20,7 +20,8 @@ import {
   ChevronRight,
   Flame,
   AlertCircle,
-  MessageSquare
+  MessageSquare,
+  MessageCircle
 } from 'lucide-react';
 
 interface ProductDetailPageProps {
@@ -40,8 +41,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   onSelectProduct,
   onAddToCart,
   onDirectOrder,
-  helplineNumber = '০১৭০০-০০০০০০',
+  helplineNumber = '01330492979',
 }) => {
+  const whatsappHref = `https://wa.me/${helplineNumber.replace(/^0/, '880')}?text=${encodeURIComponent('আসসালামু আলাইকুম, আমি অন্নধারা থেকে অর্ডার করতে চাই। আমি আগ্রহী: ' + product.title)}`;
   // Always scroll to top when product changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -135,14 +137,26 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <span className="font-bold text-[#7A0016] truncate max-w-xs">{product.title}</span>
           </div>
 
-          <a
-            href={`tel:${helplineNumber}`}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#7A0016] hover:underline"
-          >
-            <PhoneCall className="w-3.5 h-3.5 text-[#7A0016]" />
-            <span className="hidden sm:inline">সহায়তার জন্য কল:</span>
-            <span>{helplineNumber}</span>
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-xl shadow-sm transition-colors"
+              title="WhatsApp এ মেসেজ করে অর্ডার করুন"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">WhatsApp</span>
+            </a>
+            <a
+              href={`tel:${helplineNumber}`}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#7A0016] hover:underline"
+            >
+              <PhoneCall className="w-3.5 h-3.5 text-[#7A0016]" />
+              <span className="hidden sm:inline">সহায়তার জন্য কল:</span>
+              <span>{helplineNumber}</span>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -382,14 +396,25 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </button>
               </div>
 
-              {/* Hotline Order Trigger Button */}
-              <a
-                href={`tel:${helplineNumber}`}
-                className="w-full py-3 px-4 bg-amber-100 hover:bg-amber-200 text-[#7A0016] rounded-2xl font-bold text-xs flex items-center justify-center gap-2 border border-amber-300 transition-colors"
-              >
-                <PhoneCall className="w-4 h-4 text-[#7A0016]" />
-                <span>ফোন/হোয়াটসঅ্যাপে সরাসরি কল দিয়ে অর্ডার করতে: <strong>{helplineNumber}</strong></span>
-              </a>
+              {/* Hotline Order & WhatsApp Buttons */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 border border-emerald-700 transition-colors"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>WhatsApp এ মেসেজ করুন</span>
+                </a>
+                <a
+                  href={`tel:${helplineNumber}`}
+                  className="w-full py-3 px-4 bg-amber-100 hover:bg-amber-200 text-[#7A0016] rounded-2xl font-bold text-xs flex items-center justify-center gap-2 border border-amber-300 transition-colors"
+                >
+                  <PhoneCall className="w-4 h-4 text-[#7A0016]" />
+                  <span>ফোনে কল করুন: <strong>{helplineNumber}</strong></span>
+                </a>
+              </div>
 
               {/* Guarantees Row */}
               <div className="grid grid-cols-3 gap-2 text-center pt-2 text-[11px] font-semibold text-gray-600">

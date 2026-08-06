@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from './config';
 
 const SETTINGS_DOC = 'settings';
@@ -12,7 +12,7 @@ export interface StoreSettings {
 
 const defaultSettings: StoreSettings = {
   announcementText: 'সারা বাংলাদেশে ক্যাশ অন ডেলিভারি | ১০০% প্রাকৃতিক উপাদান',
-  helplineNumber: '০১৭০০-০০০০০০',
+  helplineNumber: '01330492979',
   coupons: [
     { code: 'ONNODHARA10', type: 'percent', value: 10 },
     { code: 'HEALTH50', type: 'flat', value: 50 },
