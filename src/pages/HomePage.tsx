@@ -128,7 +128,7 @@ export default function HomePage({
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
           onAddToCart={(product, size) => handleAddToCart(product, size, 1)}
-          onDirectOrder={(product, size) => handleDirectOrder(product, size, 1)}
+          onDirectOrder={(product) => handleSelectProduct(product)}
           onQuickView={(product) => handleSelectProduct(product)}
         />
 
