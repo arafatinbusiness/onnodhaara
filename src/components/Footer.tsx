@@ -137,7 +137,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onScrollToSect
             <div className="space-y-2 text-xs text-amber-100/80">
               <p className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#C59B27]" />
-                <span className="font-bold font-mono text-amber-200">+৮৮০ ১৭০০-০০০০০০</span>
+                <span className="font-bold font-mono text-amber-200">+৮৮০ ১৩৩০-৪৯২৯৭৯</span>
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#C59B27]" />
