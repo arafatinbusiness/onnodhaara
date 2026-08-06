@@ -32,7 +32,7 @@ export const BestSellersGrid: React.FC<BestSellersGridProps> = ({
   const getProductSize = (product: Product): ProductSizeOption => {
     if (selectedSizes[product.id]) return selectedSizes[product.id];
     if (product.sizeOptions && product.sizeOptions.length > 0) return product.sizeOptions[0];
-    return { label: '১ টি', value: '1pc', price: product.price, originalPrice: product.originalPrice };
+    return { label: '১ টি', value: '1pc', price: product.price };
   };
 
   const handleSizeChange = (productId: string, sizeOption: ProductSizeOption) => {
@@ -237,14 +237,14 @@ export const BestSellersGrid: React.FC<BestSellersGridProps> = ({
                     <span className="text-xl font-extrabold text-[#7A0016] font-mono">
                       ৳ {currentSize.price}
                     </span>
-                    {currentSize.originalPrice && (
+                    {product.originalPrice && product.originalPrice > currentSize.price && (
                       <span className="text-xs text-gray-400 line-through font-mono">
-                        ৳ {currentSize.originalPrice}
+                        ৳ {product.originalPrice}
                       </span>
                     )}
-                    {currentSize.originalPrice && (
+                    {product.originalPrice && product.originalPrice > currentSize.price && (
                       <span className="text-[10px] text-amber-700 font-bold bg-amber-100 px-1.5 py-0.2 rounded ml-auto">
-                        ছাড় ৳ {currentSize.originalPrice - currentSize.price}
+                        ছাড় ৳ {product.originalPrice - currentSize.price}
                       </span>
                     )}
                   </div>

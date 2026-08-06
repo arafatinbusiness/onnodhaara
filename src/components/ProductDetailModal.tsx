@@ -102,14 +102,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 <span className="text-2xl font-black text-[#7A0016] font-mono">
                   ৳ {selectedSize.price * quantity}
                 </span>
-                {selectedSize.originalPrice && (
+                {product.originalPrice && product.originalPrice > selectedSize.price && (
                   <span className="text-sm text-gray-400 line-through font-mono">
-                    ৳ {selectedSize.originalPrice * quantity}
+                    ৳ {product.originalPrice * quantity}
                   </span>
                 )}
-                {selectedSize.originalPrice && (
+                {product.originalPrice && product.originalPrice > selectedSize.price && (
                   <span className="text-xs text-amber-800 bg-amber-100 px-2 py-0.5 rounded font-bold">
-                    সাশ্রয় ৳ {(selectedSize.originalPrice - selectedSize.price) * quantity}
+                    সাশ্রয় ৳ {(product.originalPrice - selectedSize.price) * quantity}
                   </span>
                 )}
               </div>

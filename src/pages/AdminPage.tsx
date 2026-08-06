@@ -266,9 +266,9 @@ export default function AdminPage({
       price: Number(price),
       originalPrice: originalPrice ? Number(originalPrice) : undefined,
       sizeOptions: sizeOptions.map((s) => ({
-        ...s,
+        label: s.label,
+        value: s.value,
         price: Number(s.price),
-        originalPrice: s.originalPrice ? Number(s.originalPrice) : undefined,
       })),
       rating: 4.9,
       reviewsCount: editingProductId ? (products.find(p => p.id === editingProductId)?.reviewsCount || 10) : 1,

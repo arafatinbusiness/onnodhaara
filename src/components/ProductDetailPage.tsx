@@ -108,9 +108,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
     .slice(0, 4);
 
   const calculateSavings = () => {
-    const orig = selectedSize.originalPrice || product.originalPrice;
-    if (!orig || orig <= selectedSize.price) return 0;
-    return (orig - selectedSize.price) * quantity;
+    if (!product.originalPrice || product.originalPrice <= selectedSize.price) return 0;
+    return (product.originalPrice - selectedSize.price) * quantity;
   };
 
   return (
@@ -257,9 +256,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   <span className="text-3xl sm:text-4xl font-black text-[#7A0016] font-mono">
                     ৳ {selectedSize.price * quantity}
                   </span>
-                  {(selectedSize.originalPrice || product.originalPrice) && (
+                  {product.originalPrice && product.originalPrice > selectedSize.price && (
                     <span className="text-lg text-gray-400 line-through font-mono">
-                      ৳ {(selectedSize.originalPrice || product.originalPrice!) * quantity}
+                      ৳ {product.originalPrice * quantity}
                     </span>
                   )}
                 </div>
@@ -298,9 +297,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                           </div>
                           <div className="text-right">
                             <p className="font-mono font-extrabold text-sm">৳{opt.price}</p>
-                            {opt.originalPrice && opt.originalPrice > opt.price && (
+                            {product.originalPrice && product.originalPrice > opt.price && (
                               <p className={`text-[10px] line-through font-mono ${isSelected ? 'text-amber-200/70' : 'text-gray-400'}`}>
-                                ৳{opt.originalPrice}
+                                ৳{product.originalPrice}
                               </p>
                             )}
                           </div>
